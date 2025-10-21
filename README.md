@@ -2,7 +2,6 @@
 
 An item management software developed with **Flask + Python + React + TypeScript**, running on **Windows**, with data stored in **JSON** format.
 
----
 
 ## Key Technologies
 
@@ -10,7 +9,6 @@ An item management software developed with **Flask + Python + React + TypeScript
 * **Frontend**: React, TypeScript
 * **Packaging Tool**: PyInstaller
 
----
 
 ## Installation & Usage
 
@@ -34,7 +32,6 @@ An item management software developed with **Flask + Python + React + TypeScript
 >
 > Development environment versions: Python 3.10.19, Yarn 4.9.4, pip 25.2, other Python package versions listed in `backend/requirements.txt`.
 
----
 
 ## Data Storage
 
@@ -43,7 +40,6 @@ The software uses **JSON files** to store data:
 * Default data file: `items.json`
 * The file will be automatically created in the software directory (if it does not exist).
 
----
 
 ## Features
 
@@ -67,14 +63,12 @@ The software uses **JSON files** to store data:
 2. Click the **Search** button.
 3. The software will return all matching items.
 
----
 
 ## Notes
 
 * Data is stored in `items.json`. Do not delete or modify this file arbitrarily, as it may cause data loss.
 * Currently, the software only supports local use and does not support multiple users accessing simultaneously.
 
----
 
 ## License
 
