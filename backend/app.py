@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 # 读取 .env 文件
 load_dotenv()
-FLASK_ENV = os.getenv("FLASK_ENV", "development") # return "development" if not found
+FLASK_ENV = os.getenv("FLASK_ENV", "production") # return "production" if not found
 
 if getattr(sys, 'frozen', False):  # exe, getattr(sys, 'frozen', False) 是 PyInstaller 官方推荐判断是否 exe 打包的方式。
     dist_path = os.path.join(sys._MEIPASS, "dist")
