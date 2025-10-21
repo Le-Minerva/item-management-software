@@ -28,6 +28,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
+  justify-content: center; /* 水平居中 */
 }
 
 h1 {
@@ -52,6 +54,14 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+#root {
+  height: 100%;      /* 撑满 body 高度 */
+  width: 80%;       /* 撑满 body 宽度 */
+  display: flex;     /* 可选，如果你想在 root 内做 flex 布局 */
+  flex-direction: column; /* 可选，根据需要布局 */
+  justify-content: center; /* root 内部内容水平居中 */
 }
 
 @media (prefers-color-scheme: light) {

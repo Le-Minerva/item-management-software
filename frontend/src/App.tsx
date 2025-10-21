@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import ItemForm from "./components/ItemForm";
 import ItemList from "./components/ItemList";
 import SearchBar from "./components/SearchBar";
@@ -38,12 +39,35 @@ const App: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>物品复活平台</h1>
-      <SearchBar onSearch={handleSearch} />
-      <ItemForm onAdd={addItem} />
-      <ItemList items={items} onDelete={deleteItem} />
-    </div>
+    <Container fluid className="my-5">
+      <Row className="mb-4">
+        <Col>
+          <h1 className="text-center text-primary">Item Management Platform</h1>
+        </Col>
+      </Row>
+
+      <Row className="mb-3 justify-content-center">
+        <Col md={12}>
+          <SearchBar onSearch={handleSearch} />
+        </Col>
+      </Row>
+
+      <Row className="mb-4 justify-content-center">
+        <Col md={12}>
+          <Card className="p-3 shadow-sm">
+            <ItemForm onAdd={addItem} />
+          </Card>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
+          <Card className="p-3 shadow-sm">
+            <ItemList items={items} onDelete={deleteItem} />
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
