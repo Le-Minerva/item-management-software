@@ -69,6 +69,10 @@ The software uses **JSON files** to store data:
 * Data is stored in `items.json`. Do not delete or modify this file arbitrarily, as it may cause data loss.
 * Currently, the software only supports local use and does not support multiple users accessing simultaneously.
 
+> **Warning!**
+>
+> This program runs in the background by default once launched. There is currently no explicit exit method. To close it, you can use the Task Manager to terminate the process.
+
 
 ## License
 
