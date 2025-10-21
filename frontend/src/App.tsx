@@ -1,43 +1,50 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from "react";
+import ItemForm from "./components/ItemForm";
+import ItemList from "./components/ItemList";
+import SearchBar from "./components/SearchBar";
+import type { Item } from "./types";
 
-function App() {
-  const [count, setCount] = useState(0)
-  const [currentTime, setCurrentTime] = useState(0);
+const App: React.FC = () => {
+  const [items, setItems] = useState<Item[]>([]);
+  const [search, setSearch] = useState<string>("");
+
+  const fetchItems = async (searchTerm = "") => {
+    const response = await fetch(`http://localhost:5000/api/items?search=${searchTerm}`);
+    const data: Item[] = await response.json();
+    setItems(data);
+  };
 
   useEffect(() => {
-    fetch('/api/time').then(res => res.json()).then(data => {
-      setCurrentTime(data.time);
-    });
+    fetchItems();
   }, []);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>The current time is {new Date(currentTime * 1000).toLocaleString()}.</p>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+  const addItem = async (item: Item) => {
+    await fetch("http://localhost:5000/api/items", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(item),
+    });
+    fetchItems(search);
+  };
 
-export default App
+  const deleteItem = async (id: number) => {
+    await fetch(`http://localhost:5000/api/items/${id}`, { method: "DELETE" });
+    fetchItems(search);
+  };
+
+  const handleSearch = (term: string) => {
+    setSearch(term);
+    fetchItems(term);
+  };
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>物品复活平台</h1>
+      <SearchBar onSearch={handleSearch} />
+      <ItemForm onAdd={addItem} />
+      <ItemList items={items} onDelete={deleteItem} />
+    </div>
+  );
+};
+
+export default App;
