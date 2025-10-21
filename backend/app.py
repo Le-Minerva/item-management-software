@@ -21,7 +21,7 @@ CORS(app)  # 允许前端跨域请求
 
 DATA_FILE = "items.json"
 
-# 初始化 JSON 文件
+# Initialize JSON file, automatically create one if don't exist
 if not os.path.exists(DATA_FILE):
     with open(DATA_FILE, "w") as f:
         json.dump([], f)
